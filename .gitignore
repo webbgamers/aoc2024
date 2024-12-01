@@ -1,0 +1,6 @@
+/target
+Cargo.lock
+
+aoc_token
+
+/.vscode
