@@ -145,6 +145,18 @@ pub fn get_input(day: &u32) -> Option<String> {
                     Ok(res) => match res.status() {
                         StatusCode::OK => match res.text() {
                             Ok(text) => {
+                                match fs::exists("./input") {
+                                    Ok(false) => {
+                                        if let Err(err) = fs::create_dir("./input") {
+                                            println!("Couldn't create './input' directory: {err}")
+                                        }
+                                    },
+                                    Err(err) => {
+                                        println!("Couldn't check './input' directory: {err}");
+                                        return None;
+                                    },
+                                    _ => {},
+                                }
                                 let fp = format!("./input/day{:02}.txt", day);
                                 if let Err(err) = fs::write(&fp, &text) {
                                     println!("Couldn't save input to '{}': {}", fp, err);
