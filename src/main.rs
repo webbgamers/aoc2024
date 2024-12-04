@@ -150,12 +150,12 @@ pub fn get_input(day: &u32) -> Option<String> {
                                         if let Err(err) = fs::create_dir("./input") {
                                             println!("Couldn't create './input' directory: {err}")
                                         }
-                                    },
+                                    }
                                     Err(err) => {
                                         println!("Couldn't check './input' directory: {err}");
                                         return None;
-                                    },
-                                    _ => {},
+                                    }
+                                    _ => {}
                                 }
                                 let fp = format!("./input/day{:02}.txt", day);
                                 if let Err(err) = fs::write(&fp, &text) {
